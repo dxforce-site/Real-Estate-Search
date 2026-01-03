@@ -1,0 +1,58 @@
+<template>
+    <div class="slds-card slds-p-around_medium">
+        <div class="slds-grid slds-grid_align-spread slds-m-bottom_medium">
+            <h2 class="slds-text-heading_medium" style="font-weight: bold;">
+                <lightning-icon icon-name="standard:event" size="small" class="slds-m-right_small"></lightning-icon>
+                週間スケジュール
+            </h2>
+            <div class="slds-button-group">
+                <lightning-button-icon icon-name="utility:chevronleft" onclick={handlePrevWeek}></lightning-button-icon>
+                <button class="slds-button slds-button_neutral">{currentDateLabel}</button>
+                <lightning-button-icon icon-name="utility:chevronright" onclick={handleNextWeek}></lightning-button-icon>
+            </div>
+        </div>
+
+        <div class="slds-scrollable_x">
+            <table class="slds-table slds-table_bordered slds-table_fixed-layout slds-table_resizable-cols">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="sticky-column" scope="col" style="width: 60px;">
+                            <div class="slds-truncate"></div>
+                        </th>
+                        <template for:each={headers} for:item="header">
+                            <th key={header.date} class="slds-text-align_center" scope="col">
+                                <div class="slds-truncate">{header.label}</div>
+                            </th>
+                        </template>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={rows} for:item="row">
+                        <tr key={row.timeLabel}>
+                            <td class="slds-text-align_right slds-p-right_small sticky-column" style="vertical-align: top;">
+                                <div class="slds-text-body_small slds-text-color_weak">{row.timeLabel}</div>
+                            </td>
+                            <template for:each={row.slots} for:item="slot">
+                                <td key={slot.isoTime} class="slds-p-around_xx-small" style="height: 60px; vertical-align: middle;">
+                                    <template if:true={slot.hasEvent}>
+                                        <div class={slot.eventClass} 
+                                             data-id={slot.recordId} 
+                                             onclick={handleEventClick}
+                                             style="cursor: pointer; border-radius: 4px;">
+                                            <div class="slds-text-body_small slds-truncate" style="font-weight:bold;">
+                                                {slot.customerName}
+                                            </div>
+                                            <div class="slds-text-body_small slds-truncate" style="font-size: 0.75rem;">
+                                                {slot.listingName}
+                                            </div>
+                                        </div>
+                                    </template>
+                                </td>
+                            </template>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</template>

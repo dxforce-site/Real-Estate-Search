@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SearchKeywords__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Agentforceが類義語を認識しやすくするためのキーワード。
+例：「インターネット, Wi-Fi, ネット無料」</inlineHelpText>
+    <label>AI検索用タグ</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

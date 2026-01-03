@@ -1,0 +1,74 @@
+<template>
+    <div class="hero-container slds-is-relative">
+        
+        <div class="hero-background">
+            <div class="hero-content slds-text-align_center slds-p-around_large">
+                <h1 class="slds-text-heading_large slds-text-color_inverse slds-m-bottom_medium title-text">
+                    理想の暮らしを、<span class="mobile-line-break">AIコンシェルジュと。</span>
+                </h1>
+                
+                <div class="search-box-wrapper slds-p-horizontal_small">
+                    <div class="slds-grid slds-wrap slds-grid_vertical-align-center slds-container_large slds-container_center">
+                        
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_9-of-12 slds-large-size_10-of-12 slds-m-top_large">
+                            <input type="text" 
+                                   class="slds-input search-input" 
+                                   placeholder="例：海が見えるファミリー向けの3LDKを探して" 
+                                   onkeydown={handleEnter}
+                                   disabled={isLoading} />
+                        </div>
+                        
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-large-size_2-of-12 slds-m-top_large">
+                            <button class="slds-button slds-button_brand search-button" 
+                                    onclick={handleSearchClick}
+                                    disabled={isLoading}>
+                                検索
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <template if:true={hasAnswer}>
+            <div class="results-section slds-p-around_large slds-container_x-large slds-container_center">
+                <div class="slds-grid slds-wrap slds-gutters_x-small">
+                    
+                    <div class="slds-col slds-size_1-of-1 slds-large-size_4-of-12 slds-m-bottom_large">
+                        <div class="ai-bubble slds-p-around_medium">
+                            <div class="slds-media slds-media_center slds-m-bottom_small">
+                                <div class="slds-media__figure">
+                                    <lightning-icon icon-name="standard:bot" variant="inverse" class="ai-icon"></lightning-icon>
+                                </div>
+                                <div class="slds-media__body">
+                                    <h2 class="slds-text-heading_small" style="font-weight:bold;">コンシェルジュの提案</h2>
+                                </div>
+                            </div>
+                            <div class="ai-text">
+                                <lightning-formatted-rich-text value={displayAnswer}></lightning-formatted-rich-text>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1 slds-large-size_8-of-12">
+                        <h3 class="slds-text-heading_small slds-m-bottom_medium slds-text-color_weak">おすすめの物件</h3>
+                        <c-property-search-result 
+                            listings={recommendedListings}
+                            column-size="slds-size_1-of-1 slds-medium-size_6-of-12">
+                        </c-property-search-result>
+                    </div>
+
+                </div>
+            </div>
+        </template>
+
+        <template if:true={isLoading}>
+            <div class="slds-is-relative slds-p-vertical_large">
+                <lightning-spinner alternative-text="Thinking..." size="medium"></lightning-spinner>
+                <p class="slds-text-align_center slds-m-top_large slds-text-color_weak">コンシェルジュが物件を選定中...</p>
+            </div>
+        </template>
+
+    </div>
+</template>

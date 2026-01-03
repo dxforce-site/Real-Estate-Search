@@ -1,0 +1,61 @@
+<template>
+    <div class="slider-container slds-card slds-is-relative">
+        
+        <div class="main-image-wrapper"
+             ontouchstart={handleTouchStart}
+             ontouchend={handleTouchEnd}
+             onmousedown={handleMouseDown}
+             onmouseup={handleMouseUp}
+             onmouseleave={handleMouseLeave}>
+
+            <template if:true={currentImageUrl}>
+                <img src={currentImageUrl} 
+                     alt={currentImageCaption} 
+                     class="main-image fade-in"
+                     draggable="false">
+            </template>
+
+            <template if:false={currentImageUrl}>
+                <div class="slds-align_absolute-center no-image">
+                    <lightning-icon icon-name="utility:image" size="large"></lightning-icon>
+                    <p class="slds-m-left_small">No Images Available</p>
+                </div>
+            </template>
+
+            <template if:true={hasMultipleImages}>
+                <button class="nav-button prev" onclick={handlePrev} title="Previous">❮</button>
+                <button class="nav-button next" onclick={handleNext} title="Next">❯</button>
+            </template>
+        </div>
+
+        <div class="caption-container slds-text-align_center slds-p-top_small slds-p-bottom_xx-small" style="min-height: 2.5rem;">
+            <p class="slds-text-heading_small slds-text-color_default" style="font-weight: bold;">
+                {currentImageCaption}
+            </p>
+        </div>
+
+        <template if:true={hasMultipleImages}>
+            <div class="dots-container">
+                <template for:each={imageUrls} for:item="img" for:index="index">
+                    <span key={img.url} 
+                          class={img.dotClass} 
+                          onclick={handleDotClick} 
+                          data-index={index}>
+                    </span>
+                </template>
+            </div>
+        </template>
+        
+        <div class="thumbnails-container slds-m-top_small slds-grid slds-wrap slds-gutters_xx-small">
+            <template for:each={imageUrls} for:item="img" for:index="index">
+                <div key={img.url} class="slds-col slds-size_1-of-5 slds-medium-size_1-of-8">
+                    <img src={img.url} 
+                         class={img.thumbClass} 
+                         onclick={handleDotClick} 
+                         data-index={index}>
+                </div>
+            </template>
+        </div>
+
+    </div>
+</template>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SalesPoint_AI__c</fullName>
+    <inlineHelpText>Agentforce検索用（例：「南向きで日当たり良好。収納が多くファミリーに最適。」）</inlineHelpText>
+    <label>AI用 セールスポイント</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

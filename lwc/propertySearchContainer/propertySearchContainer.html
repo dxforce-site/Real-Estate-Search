@@ -1,0 +1,28 @@
+<template>
+    <div class="slds-grid slds-wrap slds-gutters_x-small">
+        
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_3-of-12">
+            <div class="slds-box slds-theme_default slds-m-bottom_medium">
+                <c-property-search-filter onsearch={handleSearch}></c-property-search-filter>
+            </div>
+        </div>
+
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_9-of-12">
+            <template if:true={isLoading}>
+                <div class="slds-is-relative slds-p-around_large">
+                    <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                </div>
+            </template>
+
+            <template if:false={isLoading}>
+                <c-property-search-result listings={processedListings}></c-property-search-result>
+                
+                <template if:true={isNoResults}>
+                    <div class="slds-text-align_center slds-p-around_large">
+                        <p>条件に一致する物件が見つかりませんでした。</p>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </div>
+</template>

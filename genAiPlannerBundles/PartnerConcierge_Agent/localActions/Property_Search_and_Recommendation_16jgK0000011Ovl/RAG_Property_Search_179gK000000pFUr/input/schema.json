@@ -1,0 +1,35 @@
+{
+  "required" : [ "Input:user_query" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "Input:min_room" : {
+      "title" : "min_room",
+      "description" : "部屋数の希望があれば数値で抽出してください（例：2LDK→2、3部屋以上→3）。",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Input:user_query" : {
+      "title" : "user_query",
+      "description" : "ユーザーの入力全体、または検索に関する要望の文章をそのまま渡してください。",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Input:max_rent" : {
+      "title" : "max_rent",
+      "description" : "ユーザーが予算を指定している場合、数値を抽出してください（例：15万→150000）。なければ空で構いません。",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "citationMode" : {
+      "title" : "Citation Mode",
+      "description" : "Select Citation Mode",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

@@ -1,0 +1,22 @@
+/* デフォルト（PC）ではモバイル用を非表示 */
+.mobile-only {
+    display: none;
+}
+
+/* モバイル用ブレークポイント */
+@media (max-width: 768px) {
+    .desktop-only {
+        display: none;
+    }
+    
+    .mobile-only {
+        display: block;
+    }
+
+    /* カード内の詳細項目の見出しスタイル */
+    .card-label {
+        font-size: 0.75rem;
+        color: var(--slds-c-input-label-color, #3e3e3c);
+        margin-bottom: 2px;
+    }
+}

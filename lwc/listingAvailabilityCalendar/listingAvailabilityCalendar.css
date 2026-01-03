@@ -1,0 +1,13 @@
+/* モバイルでテーブルが潰れないように最小幅を設定する */
+.slds-table {
+    min-width: 700px;
+}
+
+/* 左端（時間）列を固定する */
+.sticky-column {
+    position: sticky;
+    left: 0;
+    z-index: 10; /* 他のセルより前面に配置 */
+    background-color: white; /* 透過防止 */
+    border-right: 1px solid #dddbda; /* 境界線で見やすくする */
+}

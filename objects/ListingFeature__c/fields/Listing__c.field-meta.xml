@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Listing__c</fullName>
+    <label>募集住戸</label>
+    <referenceTo>Listing__c</referenceTo>
+    <relationshipLabel>住戸設備</relationshipLabel>
+    <relationshipName>ListingFeatures_Listing</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

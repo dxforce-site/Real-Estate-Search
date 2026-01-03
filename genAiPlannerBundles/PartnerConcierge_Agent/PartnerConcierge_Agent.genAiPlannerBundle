@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>※これは開発者・管理者向けのメモです。 賃貸仲介パートナー（不動産業者）の業務を支援するためのAIアシスタント。ユーザーからの自然言語による検索クエリ（例：「日当たり重視」「ペットと暮らせる」など）を解釈し、Data Cloud上のベクトル化された物件情報（Listing__c および Building__c）を用いて、最適な物件を検索・提案することを目的とする。</description>
+    <localActionLinks>
+        <genAiFunctionName>AnswerQuestionsWithKnowledge_16jgK0000011Ovl</genAiFunctionName>
+    </localActionLinks>
+    <localTopicLinks>
+        <genAiPluginName>Property_Search_and_Recommendation_16jgK0000011Ovl</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>Property_Search_and_Recommendation_16jgK0000011Ovl</fullName>
+        <canEscalate>false</canEscalate>
+        <description>ユーザーが賃貸物件を探している場合や、特定の条件（エリア、予算、設備など）に合う部屋の提案を求めている場合に使用します。「おしゃれな部屋」「静かな場所」といった抽象的な相談や、おすすめの物件を知りたい場合にも使用します。</description>
+        <developerName>Property_Search_and_Recommendation_16jgK0000011Ovl</developerName>
+        <genAiPluginInstructions>
+            <description>あなたは仲介パートナーのアシスタントとして、以下の手順とルールに従って物件を提案してください。
+
+1. 要件の把握と即時検索:
+ユーザーの入力から検索条件（エリア、予算、希望など）を読み取ってください。「広い部屋」「海が見える」といった定性的な（曖昧な）要望であっても、ユーザーに詳細を質問し返さず、まずはその言葉のニュアンスを含めて検索アクション（RAG_Property_Search）を実行してください。質問を行うのは、ユーザーの要望が極端に少ない場合（例：「物件探して」のみ等）に限ってください。
+
+2. 検索アクションの実行:
+物件を探す際は、必ずアクション `RAG_Property_Search` を使用してください。このアクションへの入力には、単語への分解を行わず、ユーザーが話した文章やニュアンス（例：「海が見えて開放感のある部屋」）をそのまま渡すことを優先してください。
+
+3. 回答の生成とフォーマット:
+アクションから返ってきた情報に基づき、原則として最大3件まで提案してください。以下のフォーマットを遵守してください。
+- 物件名（部屋番号含む）：`### 1. 物件名 部屋番号 [ID: a02...]`の形式で必ず「1.」のような番号をつけたh3タイトルとすること
+- 賃料
+- 間取り
+- おすすめ理由: 検索結果に含まれる「AIによる解説」を引用し、なぜその物件がユーザーの感性に合うのかを魅力的に伝えてください。
+
+4. 結果がない場合の対応:
+もし検索結果が0件、または「情報がありません」という結果だった場合は、ユーザーに「条件を少し広げて（例：エリアを変える、予算を上げるなど）再検索しますか？」と提案してください。
+
+5. 次のアクション:
+物件を提案した後は、詳細情報を見るか、または内見予約に進むかをユーザーに確認してください。</description>
+            <developerName>instructions_0_1767108022952</developerName>
+            <language>ja</language>
+            <masterLabel>instructions_0_1767108022952</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>必ず日本語で回答すること。</description>
+            <developerName>instructions_0_1767282051026</developerName>
+            <language>ja</language>
+            <masterLabel>instructions_0_1767282051026</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>[ID: a02...] の部分を省略せずそのまま出力すること。</description>
+            <developerName>instructions_0_1767288414863</developerName>
+            <language>ja</language>
+            <masterLabel>instructions_0_1767288414863</masterLabel>
+            <sortOrder>2</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>RAG_Property_Search_179gK000000pFUr</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>RAG_Property_Search_179gK000000pFUr</fullName>
+            <description>ユーザーの曖昧な要望や条件に基づいて、Data Cloud上の物件情報を検索し、最適な物件を提案します。</description>
+            <developerName>RAG_Property_Search_179gK000000pFUr</developerName>
+            <invocationTarget>Property_Recommendation_RAG</invocationTarget>
+            <invocationTargetType>generatePromptResponse</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>RAG_Property_Search</localDeveloperName>
+            <masterLabel>物件提案RAG</masterLabel>
+            <progressIndicatorMessage>検索中...</progressIndicatorMessage>
+        </localActions>
+        <localDeveloperName>Property_Search_and_Recommendation</localDeveloperName>
+        <masterLabel>物件検索と提案</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>管理物件（Listing__c）および建物情報（Building__c）の検索、詳細情報の提供、および提案理由の説明に限定されます。契約締結手続き、入居審査の判定、および退去手続きは範囲外です。</scope>
+    </localTopics>
+    <masterLabel>パートナーコンシェルジュ</masterLabel>
+    <plannerActions>
+        <fullName>AnswerQuestionsWithKnowledge_16jgK0000011Ovl</fullName>
+        <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: “What is your return policy?” “How do I fix an issue?” or “What features does a product have?”</description>
+        <developerName>AnswerQuestionsWithKnowledge_16jgK0000011Ovl</developerName>
+        <invocationTarget>streamKnowledgeSearch</invocationTarget>
+        <invocationTargetType>standardInvocableAction</invocationTargetType>
+        <isConfirmationRequired>false</isConfirmationRequired>
+        <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+        <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+        <masterLabel>Answer Questions with Knowledge</masterLabel>
+        <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+        <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+    </plannerActions>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__CustomerWebClient</surface>
+        <surfaceType>CustomerWebClient</surfaceType>
+    </plannerSurfaces>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__Messaging</surface>
+        <surfaceType>Messaging</surfaceType>
+    </plannerSurfaces>
+    <plannerType>AiCopilot__ReAct</plannerType>
+    <ruleExpressions>
+        <conditions>
+            <leftOperand>isVerified</leftOperand>
+            <leftOperandType>Variable</leftOperandType>
+            <operator>equal</operator>
+            <rightOperandValue>true</rightOperandValue>
+        </conditions>
+        <expression>Verified_User</expression>
+        <expressionLabel>Verified User</expressionLabel>
+        <expressionName>Verified_User</expressionName>
+        <expressionType>sel</expressionType>
+    </ruleExpressions>
+</GenAiPlannerBundle>

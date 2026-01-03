@@ -1,0 +1,61 @@
+<template>
+    <div>
+        <div class="slds-grid slds-grid_align-spread slds-m-bottom_medium">
+            <h2 class="slds-text-heading_small" style="font-weight: bold;">
+                <lightning-icon icon-name="standard:event" size="small" class="slds-m-right_small"></lightning-icon>
+                内見空き状況
+            </h2>
+            <div class="slds-button-group">
+                <lightning-button-icon icon-name="utility:chevronleft" onclick={handlePrevWeek} disabled={isPrevDisabled}></lightning-button-icon>
+                <button class="slds-button slds-button_neutral">{currentDateLabel}</button>
+                <lightning-button-icon icon-name="utility:chevronright" onclick={handleNextWeek}></lightning-button-icon>
+            </div>
+        </div>
+
+        <div class="slds-scrollable_x">
+            <table class="slds-table slds-table_bordered slds-table_fixed-layout slds-table_resizable-cols">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="sticky-column" scope="col" style="width: 80px;">
+                            <div class="slds-truncate" title="時間">時間</div>
+                        </th>
+                        <template for:each={headers} for:item="header">
+                            <th key={header.date} class="slds-text-align_center" scope="col">
+                                <div class="slds-truncate">{header.label}</div>
+                            </th>
+                        </template>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={rows} for:item="row">
+                        <tr key={row.timeLabel}>
+                            <td class="sticky-column" data-label="時間">
+                                <div class="slds-truncate slds-text-title_caps">{row.timeLabel}</div>
+                            </td>
+                            <template for:each={row.slots} for:item="slot">
+                                <td key={slot.isoTime} class="slds-text-align_center">
+                                    <template if:true={slot.isClickable}>
+                                        <button 
+                                            class="slds-button slds-button_text-destructive slds-text-link"
+                                            style="color: #0070d2; font-weight:bold; font-size:1.2em;"
+                                            data-time={slot.isoTime}
+                                            onclick={handleSlotClick}>
+                                            {slot.symbol}
+                                        </button>
+                                    </template>
+                                    <template if:false={slot.isClickable}>
+                                        <span class="slds-text-color_weak">{slot.symbol}</span>
+                                    </template>
+                                </td>
+                            </template>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="slds-m-top_small slds-text-align_right slds-text-color_weak slds-text-body_small">
+            ◎：予約可　×：予約済　-：受付終了
+        </div>
+    </div>
+</template>

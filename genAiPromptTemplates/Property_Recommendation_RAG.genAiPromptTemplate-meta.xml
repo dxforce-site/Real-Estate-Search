@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>PyOq0FQpip7cl2WGPYT0IPHunRzOX/qsCE2Mh+HdL9E=_4</activeVersionIdentifier>
+    <developerName>Property_Recommendation_RAG</developerName>
+    <masterLabel>物件提案RAG</masterLabel>
+    <templateVersions>
+        <content>あなたは不動産仲介パートナーを支援する優秀なアシスタントです。
+以下の「検索された物件情報」を使用して、ユーザーの質問に回答してください。
+
+# 検索された物件情報
+{!$EinsteinSearch:Listing_Retriever_1Cx_5Olaa10b5a9.results}
+
+# ユーザーの質問
+{!$Input:user_query}
+
+# 回答のガイドライン
+1. 上記の「検索された物件情報」に記載されている情報のみを根拠としてください。載っていないことは「情報がありません」と答えてください。
+2. 提案する際は、ユーザーの質問（意図）と、物件の特徴（結合テキスト）がどうマッチしているかを具体的に説明してください。
+3. 物件名と家賃は必ず明記してください。
+</content>
+        <inputs>
+            <apiName>user_query</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>user_query</masterLabel>
+            <referenceName>Input:user_query</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>max_rent</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>max_rent</masterLabel>
+            <referenceName>Input:max_rent</referenceName>
+            <required>false</required>
+        </inputs>
+        <inputs>
+            <apiName>min_room</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>min_room</masterLabel>
+            <referenceName>Input:min_room</referenceName>
+            <required>false</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT5</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getEinsteinRetrieverResults/Listing_Retriever_1Cx_5Olaa10b5a9</definition>
+            <description>ユーザーの自然言語クエリに基づいて、物件検索用統合オブジェクトから関連する物件情報を検索します。</description>
+            <label>Listing_Retriever</label>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>searchText</parameterName>
+                <valueExpression>{!$Input:user_query}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://List&lt;String&gt;</definition>
+                <isRequired>false</isRequired>
+                <parameterName>outputFieldNames</parameterName>
+                <valueExpression>[&quot;Address&quot;,&quot;Area_Size&quot;,&quot;Building_Name&quot;,&quot;Built_Year&quot;,&quot;Combined_Search_Text&quot;,&quot;Floor_Plan&quot;,&quot;Nearest_Station&quot;,&quot;Room_Count&quot;,&quot;Rent&quot;,&quot;Room_Number&quot;,&quot;Walk_Minutes&quot;]</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://Integer</definition>
+                <isRequired>false</isRequired>
+                <parameterName>resultCount</parameterName>
+                <valueExpression>10</valueExpression>
+            </parameters>
+            <referenceName>EinsteinSearch:Listing_Retriever_1Cx_5Olaa10b5a9</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>PyOq0FQpip7cl2WGPYT0IPHunRzOX/qsCE2Mh+HdL9E=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>あなたは不動産仲介パートナーを支援する優秀なアシスタントです。
+以下の「検索された物件情報」を使用して、ユーザーの質問に回答してください。
+
+# 検索された物件情報
+{!$EinsteinSearch:Listing_Retriever_1Cx_5Olaa10b5a9.results}
+
+# ユーザーの質問
+{!$Input:user_query}
+
+# 回答のガイドライン
+1. 上記の「検索された物件情報」に記載されている情報のみを根拠としてください。載っていないことは「情報がありません」と答えてください。
+2. 提案する際は、ユーザーの質問（意図）と、物件の特徴（結合テキスト）がどうマッチしているかを具体的に説明してください。
+3. 物件名と家賃は必ず明記してください。
+</content>
+        <inputs>
+            <apiName>user_query</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>user_query</masterLabel>
+            <referenceName>Input:user_query</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>max_rent</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>max_rent</masterLabel>
+            <referenceName>Input:max_rent</referenceName>
+            <required>false</required>
+        </inputs>
+        <inputs>
+            <apiName>min_room</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>min_room</masterLabel>
+            <referenceName>Input:min_room</referenceName>
+            <required>false</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT5</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getEinsteinRetrieverResults/Listing_Retriever_1Cx_5Olaa10b5a9</definition>
+            <description>ユーザーの自然言語クエリに基づいて、物件検索用統合オブジェクトから関連する物件情報を検索します。</description>
+            <label>Listing_Retriever</label>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>searchText</parameterName>
+                <valueExpression>{!$Input:user_query}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://List&lt;String&gt;</definition>
+                <isRequired>false</isRequired>
+                <parameterName>outputFieldNames</parameterName>
+                <valueExpression>[&quot;Address&quot;,&quot;Area_Size&quot;,&quot;Building_Name&quot;,&quot;Built_Year&quot;,&quot;Combined_Search_Text&quot;,&quot;Floor_Plan&quot;,&quot;Nearest_Station&quot;,&quot;Room_Count&quot;,&quot;Rent&quot;,&quot;Room_Number&quot;,&quot;Walk_Minutes&quot;,&quot;Listing_Id&quot;]</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://Integer</definition>
+                <isRequired>false</isRequired>
+                <parameterName>resultCount</parameterName>
+                <valueExpression>10</valueExpression>
+            </parameters>
+            <referenceName>EinsteinSearch:Listing_Retriever_1Cx_5Olaa10b5a9</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>PyOq0FQpip7cl2WGPYT0IPHunRzOX/qsCE2Mh+HdL9E=_2</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>あなたは不動産仲介パートナーを支援する優秀なアシスタントです。
+以下の「検索された物件情報」を使用して、ユーザーの質問に回答してください。
+
+# 検索された物件情報
+{!$EinsteinSearch:Listing_Retriever_1Cx_5Olaa10b5a9.results}
+
+# ユーザーの質問
+{!$Input:user_query}
+
+# 回答のガイドライン
+1. 上記の「検索された物件情報」に記載されている情報のみを根拠としてください。載っていないことは「情報がありません」と答えてください。
+2. 提案する際は、ユーザーの質問（意図）と、物件の特徴（結合テキスト）がどうマッチしているかを具体的に説明してください。
+3. 物件名と間取りと家賃は必ず明記してください。
+</content>
+        <inputs>
+            <apiName>user_query</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>user_query</masterLabel>
+            <referenceName>Input:user_query</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>max_rent</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>max_rent</masterLabel>
+            <referenceName>Input:max_rent</referenceName>
+            <required>false</required>
+        </inputs>
+        <inputs>
+            <apiName>min_room</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>min_room</masterLabel>
+            <referenceName>Input:min_room</referenceName>
+            <required>false</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT5</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getEinsteinRetrieverResults/Listing_Retriever_1Cx_5Olaa10b5a9</definition>
+            <description>ユーザーの自然言語クエリに基づいて、物件検索用統合オブジェクトから関連する物件情報を検索します。</description>
+            <label>Listing_Retriever</label>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>searchText</parameterName>
+                <valueExpression>{!$Input:user_query}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://List&lt;String&gt;</definition>
+                <isRequired>false</isRequired>
+                <parameterName>outputFieldNames</parameterName>
+                <valueExpression>[&quot;Address&quot;,&quot;Area_Size&quot;,&quot;Building_Name&quot;,&quot;Built_Year&quot;,&quot;Combined_Search_Text&quot;,&quot;Floor_Plan&quot;,&quot;Nearest_Station&quot;,&quot;Room_Count&quot;,&quot;Rent&quot;,&quot;Room_Number&quot;,&quot;Walk_Minutes&quot;,&quot;Listing_Id&quot;]</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://Integer</definition>
+                <isRequired>false</isRequired>
+                <parameterName>resultCount</parameterName>
+                <valueExpression>10</valueExpression>
+            </parameters>
+            <referenceName>EinsteinSearch:Listing_Retriever_1Cx_5Olaa10b5a9</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>PyOq0FQpip7cl2WGPYT0IPHunRzOX/qsCE2Mh+HdL9E=_3</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>あなたは不動産仲介パートナーを支援する優秀なアシスタントです。
+以下の「検索された物件情報」を使用して、ユーザーの質問に回答してください。
+
+# 検索された物件情報
+{!$EinsteinSearch:Listing_Retriever_1Cx_5Olaa10b5a9.results}
+
+# ユーザーの質問
+{!$Input:user_query}
+
+# 回答のガイドライン
+1. 上記の「検索された物件情報」に記載されている情報のみを根拠としてください。載っていないことは「情報がありません」と答えてください。
+2. 提案する際は、ユーザーの質問（意図）と、物件の特徴（結合テキスト）がどうマッチしているかを具体的に説明してください。
+3. 物件名と間取りと家賃は必ず明記してください。
+4. 物件を紹介する際は、必ず物件名の後ろに [ID: a02...] の形式でListing Idを出力してください。例）物件名：ベイサイドタワー横浜 2505 [ID: a02gK00000BI9oCQAT] \n 間取り：...
+</content>
+        <inputs>
+            <apiName>user_query</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>user_query</masterLabel>
+            <referenceName>Input:user_query</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>max_rent</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>max_rent</masterLabel>
+            <referenceName>Input:max_rent</referenceName>
+            <required>false</required>
+        </inputs>
+        <inputs>
+            <apiName>min_room</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>min_room</masterLabel>
+            <referenceName>Input:min_room</referenceName>
+            <required>false</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT5</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getEinsteinRetrieverResults/Listing_Retriever_1Cx_5Olaa10b5a9</definition>
+            <description>ユーザーの自然言語クエリに基づいて、物件検索用統合オブジェクトから関連する物件情報を検索します。</description>
+            <label>Listing_Retriever</label>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>searchText</parameterName>
+                <valueExpression>{!$Input:user_query}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://List&lt;String&gt;</definition>
+                <isRequired>false</isRequired>
+                <parameterName>outputFieldNames</parameterName>
+                <valueExpression>[&quot;Address&quot;,&quot;Area_Size&quot;,&quot;Building_Name&quot;,&quot;Built_Year&quot;,&quot;Combined_Search_Text&quot;,&quot;Floor_Plan&quot;,&quot;Nearest_Station&quot;,&quot;Room_Count&quot;,&quot;Rent&quot;,&quot;Room_Number&quot;,&quot;Walk_Minutes&quot;,&quot;Listing_Id&quot;]</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://Integer</definition>
+                <isRequired>false</isRequired>
+                <parameterName>resultCount</parameterName>
+                <valueExpression>10</valueExpression>
+            </parameters>
+            <referenceName>EinsteinSearch:Listing_Retriever_1Cx_5Olaa10b5a9</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>PyOq0FQpip7cl2WGPYT0IPHunRzOX/qsCE2Mh+HdL9E=_4</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

@@ -1,0 +1,26 @@
+.scroll-to-top-button {
+    height: 40px;
+    width: 40px;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: #fff;
+    border: solid 1px #666666;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    opacity: 0.4;
+    transition: opacity 0.5s;
+}
+.scroll-to-top-button:hover {
+    opacity: 1;
+}
+.button-icon {
+    height: 10px;
+    width: 10px;
+    border-top: 2px solid #666666;
+    border-right: 2px solid #666666;
+    transform: translateY(20%) rotate(-45deg);
+}

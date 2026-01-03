@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IconName__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>LWCでアイコンを表示するためのSLDS名。例：utility:lock, utility:wifi, standard:home
+https://www.lightningdesignsystem.com/2e1ef8501/p/83309d-icons</inlineHelpText>
+    <label>SLDSアイコン名</label>
+    <length>50</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,56 @@
+<template>
+    <div class="slds-grid slds-wrap slds-gutters_x-small">
+        <template for:each={listings} for:item="item">
+            <div key={item.Id} class={cardWrapperClass}>
+
+                <article class="slds-card slds-card_boundary h-100">
+                    <div class="slds-card__body slds-card__body_inner slds-p-top_small">
+                        
+                        <div class="slds-grid slds-gutters_xx-small slds-m-bottom_small" style="height: 150px;">
+                            <div class="slds-col slds-size_1-of-2" style="height: 100%; overflow: hidden; background-color: #f3f2f2;">
+                                <template if:true={item.buildingPhotoUrl}>
+                                    <img src={item.buildingPhotoUrl} alt="Exterior" style="width: 100%; height: 100%; object-fit: cover;">
+                                </template>
+                                <template if:false={item.buildingPhotoUrl}>
+                                    <div class="slds-align_absolute-center h-100 slds-text-color_weak">No Photo</div>
+                                </template>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2" style="height: 100%; overflow: hidden; background-color: #f3f2f2;">
+                                <template if:true={item.listingPhotoUrl}>
+                                    <img src={item.listingPhotoUrl} alt="Interior" style="width: 100%; height: 100%; object-fit: cover;">
+                                </template>
+                                <template if:false={item.listingPhotoUrl}>
+                                    <div class="slds-align_absolute-center h-100 slds-text-color_weak">No Photo</div>
+                                </template>
+                            </div>
+                        </div>
+
+                        <h3 class="slds-text-heading_small slds-truncate" title={item.buildingName}>
+                            <a href="#" onclick={handleNavigate} data-record-id={item.Id}>{item.buildingName} {item.Name}</a>
+                        </h3>
+                        <div class="slds-m-top_x-small">
+                            <p class="slds-text-title_caps slds-text-color_weak">{item.FloorPlan__c} / {item.AreaSize__c}㎡</p>
+                            <p class="slds-text-heading_medium slds-m-vertical_xx-small">
+                                <lightning-formatted-number value={item.Rent__c} format-style="currency" currency-code="JPY"></lightning-formatted-number>
+                            </p>
+                            <p class="slds-text-body_small">
+                                {item.nearestStation} 徒歩{item.walkMinutes}分
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <footer class="slds-card__footer">
+                        <lightning-button 
+                            label="詳細・空室確認" 
+                            variant="neutral" 
+                            class="slds-m-right_x-small"
+                            onclick={handleNavigate}
+                            data-record-id={item.Id}>
+                        </lightning-button>
+                    </footer>
+                </article>
+
+            </div>
+        </template>
+    </div>
+</template>

@@ -1,0 +1,84 @@
+<template>
+    <lightning-modal-header label="内見予約"></lightning-modal-header>
+    
+    <lightning-modal-body>
+        <div class="slds-p-around_medium">
+            <div class="slds-text-align_center slds-m-bottom_medium">
+                <p class="slds-text-color_weak slds-m-top_x-small">
+                    気になる物件を実際に見に行きましょう。<br>
+                    必要事項をご入力の上、お申し込みください。
+                </p>
+            </div>
+
+            <div class="form-container">
+                <lightning-input 
+                    label="お名前" 
+                    required 
+                    value={form.name} 
+                    data-field="name"
+                    onchange={handleChange}
+                    class="slds-m-bottom_small">
+                </lightning-input>
+
+                <div class="slds-grid slds-wrap slds-gutters">
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                        <lightning-input 
+                            label="メールアドレス" 
+                            type="email" 
+                            required 
+                            value={form.email} 
+                            data-field="email"
+                            onchange={handleChange}
+                            class="slds-m-bottom_small">
+                        </lightning-input>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                        <lightning-input 
+                            label="電話番号" 
+                            type="tel" 
+                            value={form.phone} 
+                            data-field="phone"
+                            onchange={handleChange}
+                            class="slds-m-bottom_small">
+                        </lightning-input>
+                    </div>
+                </div>
+
+                <lightning-input 
+                    label="内見希望日時" 
+                    type="datetime" 
+                    required 
+                    value={form.preferredTime} 
+                    data-field="preferredTime"
+                    onchange={handleChange}
+                    class="slds-m-bottom_small">
+                </lightning-input>
+
+                <lightning-textarea 
+                    label="その他ご要望・ご質問" 
+                    value={form.remarks} 
+                    data-field="remarks"
+                    onchange={handleChange}
+                    placeholder="例：小さい子供が一緒です。近隣の駐車場を知りたいです。"
+                    class="slds-m-bottom_medium">
+                </lightning-textarea>
+            </div>
+        </div>
+    </lightning-modal-body>
+
+    <lightning-modal-footer>
+        <div class="slds-grid slds-grid_align-end">
+            <lightning-button 
+                label="キャンセル" 
+                onclick={handleCancel}>
+            </lightning-button>
+            <lightning-button 
+                variant="brand" 
+                label="予約を申し込む" 
+                onclick={handleSubmit} 
+                disabled={isSubmitting} 
+                class="slds-m-left_small">
+            </lightning-button>
+        </div>
+    </lightning-modal-footer>
+</template>

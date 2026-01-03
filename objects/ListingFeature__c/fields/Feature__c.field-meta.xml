@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Feature__c</fullName>
+    <label>設備</label>
+    <referenceTo>FeatureMaster__c</referenceTo>
+    <relationshipLabel>住戸設備</relationshipLabel>
+    <relationshipName>ListingFeatures_FeatureMaster</relationshipName>
+    <relationshipOrder>1</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

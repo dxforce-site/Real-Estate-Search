@@ -1,0 +1,57 @@
+<template>
+    <div class="slds-form">
+        <h2 class="slds-text-heading_medium slds-m-bottom_medium">条件検索</h2>
+
+        <lightning-input label="エリア（市区町村）" data-name="city" type="text" class="slds-m-bottom_small"></lightning-input>
+        <lightning-input label="最寄駅" data-name="station" type="text" class="slds-m-bottom_small"></lightning-input>
+        <div class="slds-grid slds-gutters_x-small slds-m-bottom_small">
+            <div class="slds-col">
+                <lightning-input label="賃料 下限(円)" data-name="minRent" type="number" formatter="currency"></lightning-input>
+            </div>
+            <div class="slds-col">
+                <lightning-input label="上限(円)" data-name="maxRent" type="number" formatter="currency"></lightning-input>
+            </div>
+        </div>
+        <lightning-combobox label="間取り" data-name="floorPlan" placeholder="選択してください" options={floorPlanOptions} class="slds-m-bottom_small"></lightning-combobox>
+        <div class="slds-grid slds-gutters_x-small slds-m-bottom_small">
+            <div class="slds-col">
+                <lightning-input label="面積 下限(㎡)" data-name="minArea" type="number"></lightning-input>
+            </div>
+            <div class="slds-col">
+                <lightning-input label="上限(㎡)" data-name="maxArea" type="number"></lightning-input>
+            </div>
+        </div>
+        <lightning-input label="駅徒歩（分以内）" data-name="maxWalk" type="number" class="slds-m-bottom_small"></lightning-input>
+        <lightning-input label="築年数（年以内）" data-name="maxAge" type="number" class="slds-m-bottom_medium"></lightning-input>
+
+        <div class="slds-m-bottom_medium">
+            <legend class="slds-form-element__label slds-text-title_bold">こだわり条件</legend>
+            
+            <template if:true={groupedFeatures}>
+                <template for:each={groupedFeatures} for:item="group">
+                    <div key={group.categoryName} class="slds-m-top_small">
+                        <h3 class="slds-text-title slds-p-vertical_xx-small slds-border_bottom" style="font-weight: bold;">
+                            {group.categoryName}
+                        </h3>
+                        
+                        <div class="slds-grid slds-wrap slds-p-top_xx-small">
+                            <template for:each={group.features} for:item="feature">
+                                <div key={feature.Id} class="slds-col slds-size_1-of-2">
+                                    <lightning-input 
+                                        type="checkbox" 
+                                        label={feature.Name} 
+                                        name="feature" 
+                                        value={feature.Id}
+                                        onchange={handleFeatureChange}>
+                                    </lightning-input>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+            </template>
+        </div>
+
+        <lightning-button variant="brand" label="この条件で検索" title="検索" onclick={notifySearch} class="slds-size_1-of-1"></lightning-button>
+    </div>
+</template>

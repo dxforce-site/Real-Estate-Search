@@ -1,0 +1,94 @@
+.hero-background {
+    background-image: url('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=2000&auto=format&fit=crop'); /* フリー画像などで代用 */
+    background-size: cover;
+    background-position: center;
+    padding: 6rem 1rem;
+    position: relative;
+}
+
+.title-text {
+    font-weight:bold;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+}
+
+/* 背景を暗くして文字を見やすく */
+.hero-background::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.hero-content {
+    position: relative; /* overlayの上に表示 */
+    z-index: 1;
+}
+
+.search-input {
+    height: 3.5rem;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    padding-left: 1.5rem;
+    padding-right: 1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border: none;
+    transition: all 0.3s;
+}
+
+.search-button {
+    height: 3.5rem;
+    padding: 0 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.1s;
+}
+
+.search-button:active {
+    transform: scale(0.98);
+}
+
+.search-input:focus {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    transform: scale(1.01);
+}
+
+.ai-bubble {
+    background: #f3f9fe;
+    border-left: 5px solid #0176d3;
+    border-radius: 0 8px 8px 0;
+}
+
+.ai-icon {
+    background-color: #0176d3;
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+
+.ai-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+    white-space: pre-wrap; /* 改行を反映 */
+}
+
+.results-section {
+    background-color: #fff;
+    border-radius: 8px;
+    margin-top: -2rem; /* ヒーローエリアに少し被せる */
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
+}
+
+/* モバイル用ブレークポイント */
+@media (max-width: 768px) {
+    .title-text {
+        font-size: x-large;
+    }
+
+    .mobile-line-break {
+        white-space: nowrap;
+    }
+}
