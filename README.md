@@ -6,6 +6,7 @@
 - objects
 - tabs
 - globalValueSets
+- sharingSets
 
 ### LWC
 - lwc
@@ -16,15 +17,18 @@
 - genAiPromptTemplates
 
 ### Data 360
+- dataStreamTemplates
+- dataSrcDataModelFieldMaps
 - dataSourceObjects
-- dataStreamDefinitions
-- mktDataTranObjects
-- objectSourceTargetMaps
+- dataSourceBundleDefinitions
+- mktDataSources
+- DataPackageKitObjects
+- dataPackageKitDefinitions
+- dataKitObjectTemplates
+- dataKitObjectDependencies
+- objects/IntegratedListingSearch__dlm
 
-### その他
-- sharingSets
-
-### DevOps Datakit package.xml
+#### DevOps Datakit package.xml
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
