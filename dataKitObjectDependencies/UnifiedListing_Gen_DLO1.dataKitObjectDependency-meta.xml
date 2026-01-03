@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataKitObjectDependency xmlns="http://soap.sforce.com/2006/04/metadata">
+    <dataPackageKitDef>DXforce</dataPackageKitDef>
+    <developerName>UnifiedListing_Gen_DLO1</developerName>
+    <masterLabel>UnifiedListing_Gen_DLO__dll</masterLabel>
+    <sourceObject>UnifiedListing_Gen_DLO</sourceObject>
+    <sourceObjectType>DataSourceObject</sourceObjectType>
+    <targetObject>UnifiedListing_Gen_DLO1</targetObject>
+</DataKitObjectDependency>

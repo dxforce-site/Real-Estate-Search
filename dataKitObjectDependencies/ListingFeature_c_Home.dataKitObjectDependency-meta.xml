@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataKitObjectDependency xmlns="http://soap.sforce.com/2006/04/metadata">
+    <dataPackageKitDef>DXforce</dataPackageKitDef>
+    <developerName>ListingFeature_c_Home</developerName>
+    <masterLabel>ListingFeature_c_Home__dll</masterLabel>
+    <sourceObject>ListingFeature_c_Home1</sourceObject>
+    <sourceObjectType>DataSourceObject</sourceObjectType>
+    <targetObject>ListingFeature_c_Home</targetObject>
+</DataKitObjectDependency>
