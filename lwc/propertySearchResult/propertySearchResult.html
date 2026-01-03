@@ -6,18 +6,18 @@
                 <article class="slds-card slds-card_boundary h-100">
                     <div class="slds-card__body slds-card__body_inner slds-p-top_small">
                         
-                        <div class="slds-grid slds-gutters_xx-small slds-m-bottom_small" style="height: 150px;">
-                            <div class="slds-col slds-size_1-of-2" style="height: 100%; overflow: hidden; background-color: #f3f2f2;">
+                        <div class="slds-grid slds-gutters_xx-small slds-m-bottom_small gallery-container">
+                            <div class="slds-col slds-size_1-of-2 image-wrapper">
                                 <template if:true={item.buildingPhotoUrl}>
-                                    <img src={item.buildingPhotoUrl} alt="Exterior" style="width: 100%; height: 100%; object-fit: cover;">
+                                    <img src={item.buildingPhotoUrl} alt="Exterior" class="property-photo">
                                 </template>
                                 <template if:false={item.buildingPhotoUrl}>
                                     <div class="slds-align_absolute-center h-100 slds-text-color_weak">No Photo</div>
                                 </template>
                             </div>
-                            <div class="slds-col slds-size_1-of-2" style="height: 100%; overflow: hidden; background-color: #f3f2f2;">
+                            <div class="slds-col slds-size_1-of-2 image-wrapper">
                                 <template if:true={item.listingPhotoUrl}>
-                                    <img src={item.listingPhotoUrl} alt="Interior" style="width: 100%; height: 100%; object-fit: cover;">
+                                    <img src={item.listingPhotoUrl} alt="Interior" class="property-photo">
                                 </template>
                                 <template if:false={item.listingPhotoUrl}>
                                     <div class="slds-align_absolute-center h-100 slds-text-color_weak">No Photo</div>
