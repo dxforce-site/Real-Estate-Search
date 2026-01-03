@@ -1,6 +1,7 @@
 /* モバイルでテーブルが潰れないように最小幅を設定する */
 .slds-table {
     min-width: 700px;
+    background-color: var(--dxp-g-root, #fff);
 }
 
 /* 左端（時間）列を固定する */
@@ -8,6 +9,11 @@
     position: sticky;
     left: 0;
     z-index: 10; /* 他のセルより前面に配置 */
-    background-color: white; /* 透過防止 */
+    background-color: var(--dxp-g-root, #fff); /* 透過防止 */
     border-right: 1px solid #dddbda; /* 境界線で見やすくする */
+}
+
+/* ヘッダーの背景色をブランドコントラストに設定 */
+.slds-table thead th {
+    background-color: var(--dxp-g-brand-contrast, #f3f3f3);
 }
