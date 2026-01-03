@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataSrcDataModelFieldMap xmlns="http://soap.sforce.com/2006/04/metadata">
+    <filterApplied>false</filterApplied>
+    <filterOperationType>Equal</filterOperationType>
+    <masterLabel>DXforceUnifiedListing_Gen_DLOSalesPoint_AIIntegratedListingSearchSalesPoint_AIDclhdBfIffeaAOJ</masterLabel>
+    <sourceField>UnifiedListing_Gen_DLO.SalesPoint_AI__c</sourceField>
+    <targetField>IntegratedListingSearch__dlm.SalesPoint_AI__c</targetField>
+    <templateVersion>1</templateVersion>
+    <versionNumber>1.0</versionNumber>
+</DataSrcDataModelFieldMap>

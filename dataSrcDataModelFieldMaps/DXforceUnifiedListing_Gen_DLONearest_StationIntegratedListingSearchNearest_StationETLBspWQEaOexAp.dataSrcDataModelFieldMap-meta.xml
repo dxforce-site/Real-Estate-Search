@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataSrcDataModelFieldMap xmlns="http://soap.sforce.com/2006/04/metadata">
+    <filterApplied>false</filterApplied>
+    <filterOperationType>Equal</filterOperationType>
+    <masterLabel>DXforceUnifiedListing_Gen_DLONearest_StationIntegratedListingSearchNearest_StationETLBspWQEaOexAp</masterLabel>
+    <sourceField>UnifiedListing_Gen_DLO.Nearest_Station__c</sourceField>
+    <targetField>IntegratedListingSearch__dlm.Nearest_Station__c</targetField>
+    <templateVersion>1</templateVersion>
+    <versionNumber>1.0</versionNumber>
+</DataSrcDataModelFieldMap>
