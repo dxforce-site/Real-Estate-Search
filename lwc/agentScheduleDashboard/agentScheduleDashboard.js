@@ -5,88 +5,11 @@ import { refreshApex } from '@salesforce/apex';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { NavigationMixin } from 'lightning/navigation';
 
-// データテーブルの列定義
-const COLUMNS = [
-    // 1. 日時: 固定 (150px)
-    { 
-        label: '日時', 
-        fieldName: 'PreferredTime__c', 
-        type: 'date', 
-        typeAttributes: { 
-            year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' 
-        },
-        initialWidth: 150, 
-        sortable: true 
-    },
-    // 2. お客様名: 固定 (120px) - 列が増えたので少し詰め気味に固定します
-    { 
-        label: 'お客様名', 
-        fieldName: 'Name__c', 
-        type: 'text', 
-        initialWidth: 120,
-        wrapText: true 
-    },
-    // 3. 電話: 固定 (135px)
-    { 
-        label: '電話', 
-        fieldName: 'Phone__c', 
-        type: 'text', 
-        initialWidth: 135 
-    },
-    // 4. メール: 固定 (50px) - アイコンのみ表示等は難しいので、幅を狭めて省略表示させるか、広めに取るか
-    // ここではクリックしやすいようある程度確保しますが、長すぎる場合は省略されます
-    { 
-        label: 'メール', 
-        fieldName: 'Email__c', 
-        type: 'email', 
-        initialWidth: 160
-    },
-    // 5. 建物名: 可変幅 (自動)
-    { 
-        label: '建物名', 
-        fieldName: 'BuildingName__c', 
-        type: 'text', 
-        wrapText: true 
-    },
-    // 6. 住戸名: 固定 (65px)
-    { 
-        label: '住戸名', 
-        fieldName: 'ListingName', 
-        type: 'button', 
-        typeAttributes: { 
-            label: { fieldName: 'ListingName' }, 
-            name: 'view_listing', 
-            variant: 'base' 
-        },
-        initialWidth: 65 
-    },
-    // 7. 備考: 可変幅 (自動) - ★ここに追加
-    { 
-        label: '備考・要望', 
-        fieldName: 'Remarks__c', 
-        type: 'text', 
-        wrapText: true 
-    },
-    // 8. ステータス: 固定 (120px)
-    { 
-        label: 'ステータス', 
-        fieldName: 'Status__c', 
-        type: 'text', 
-        initialWidth: 120 
-    },
-    // 9. アクション: 固定 (60px)
-    {
-        type: 'action',
-        typeAttributes: { rowActions: [
-            { label: 'キャンセル', name: 'cancel' }
-        ] },
-        initialWidth: 60 
-    }
-];
+
+import LightningConfirm from 'lightning/confirm';
 
 export default class AgentScheduleDashboard extends NavigationMixin(LightningElement) {
     @track tableData = [];
-    columns = COLUMNS;
     wiredResult; // refreshApex用
 
     @wire(getMyUpcomingReservations)
@@ -117,26 +40,17 @@ export default class AgentScheduleDashboard extends NavigationMixin(LightningEle
         return refreshApex(this.wiredResult);
     }
 
-    // 行アクション（キャンセル または 物件名クリック）
-    handleRowAction(event) {
-        const actionName = event.detail.action.name;
-        const row = event.detail.row;
-
-        switch (actionName) {
-            case 'cancel':
-                this.handleCancel(row.Id);
-                break;
-            case 'view_listing':
-                this.navigateToListing(row.TargetListing__c);
-                break;
-            default:
-        }
-    }
 
     // キャンセル処理
     async handleCancel(recordId) {
-        // 確認ダイアログ（簡易版）
-        if (!confirm('この予約をキャンセルしてもよろしいですか？')) {
+        // 確認ダイアログ（LightningConfirm）
+        const result = await LightningConfirm.open({
+            message: 'この予約をキャンセルしてもよろしいですか？',
+            variant: 'headerless',
+            label: '予約キャンセルの確認',
+        });
+
+        if (!result) {
             return;
         }
 

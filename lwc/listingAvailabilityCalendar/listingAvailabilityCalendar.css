@@ -17,3 +17,8 @@
 .slds-table thead th {
     background-color: var(--dxp-g-brand-contrast, #f3f3f3);
 }
+
+/* 行ホバー時の背景色 */
+.slds-table:not(.slds-no-row-hover) tbody tr:hover>td {
+    background-color: var(--dxp-g-brand-contrast, #f3f3f3);
+}

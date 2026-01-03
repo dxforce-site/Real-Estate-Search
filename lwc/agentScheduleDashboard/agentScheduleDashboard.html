@@ -11,19 +11,111 @@
         <template if:true={hasData}>
             <!-- デスクトップ用テーブル -->
             <div class="desktop-only">
-                <lightning-datatable
-                    key-field="Id"
-                    data={tableData}
-                    columns={columns}
-                    hide-checkbox-column
-                    onrowaction={handleRowAction}>
-                </lightning-datatable>
+                <table class="slds-table slds-table_bordered slds-table_fixed-layout slds-table_resizable-cols">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <!-- 1. 日時: 固定 150px -->
+                            <th scope="col" style="width: 150px;">
+                                <div class="slds-truncate" title="日時">日時</div>
+                            </th>
+                            <!-- 2. お客様名: 固定 120px -->
+                            <th scope="col" style="width: 120px;">
+                                <div class="slds-truncate" title="お客様名">お客様名</div>
+                            </th>
+                            <!-- 3. 電話: 固定 135px -->
+                            <th scope="col" style="width: 135px;">
+                                <div class="slds-truncate" title="電話">電話</div>
+                            </th>
+                            <!-- 4. メール: 固定 160px -->
+                            <th scope="col" style="width: 160px;">
+                                <div class="slds-truncate" title="メール">メール</div>
+                            </th>
+                            <!-- 5. 建物名: 可変幅 -->
+                            <th scope="col">
+                                <div class="slds-truncate" title="建物名">建物名</div>
+                            </th>
+                            <!-- 6. 住戸名: 固定 65px (ボタン/リンク化) -->
+                            <th scope="col" style="width: 80px;">
+                                <div class="slds-truncate" title="住戸名">住戸名</div>
+                            </th>
+                            <!-- 7. 備考: 可変幅 -->
+                            <th scope="col">
+                                <div class="slds-truncate" title="備考・要望">備考・要望</div>
+                            </th>
+                            <!-- 8. ステータス: 固定 120px -->
+                            <th scope="col" style="width: 120px;">
+                                <div class="slds-truncate" title="ステータス">ステータス</div>
+                            </th>
+                            <!-- 9. アクション: 固定 60px -->
+                            <th scope="col" style="width: 60px;">
+                                <div class="slds-truncate" title="アクション"></div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={tableData} for:item="row">
+                            <tr key={row.Id}>
+                                <td data-label="日時">
+                                    <div class="slds-truncate">
+                                        <lightning-formatted-date-time
+                                            value={row.PreferredTime__c}
+                                            year="numeric"
+                                            month="2-digit"
+                                            day="2-digit"
+                                            hour="2-digit"
+                                            minute="2-digit">
+                                        </lightning-formatted-date-time>
+                                    </div>
+                                </td>
+                                <td data-label="お客様名">
+                                    <div class="slds-truncate" title={row.Name__c}>{row.Name__c}</div>
+                                </td>
+                                <td data-label="電話">
+                                    <div class="slds-truncate">
+                                        <lightning-formatted-phone value={row.Phone__c}></lightning-formatted-phone>
+                                    </div>
+                                </td>
+                                <td data-label="メール">
+                                    <div class="slds-truncate">
+                                        <lightning-formatted-email value={row.Email__c} hide-icon></lightning-formatted-email>
+                                    </div>
+                                </td>
+                                <td data-label="建物名">
+                                    <div class="slds-truncate" title={row.BuildingName__c}>{row.BuildingName__c}</div>
+                                </td>
+                                <td data-label="住戸名">
+                                    <div class="slds-truncate">
+                                        <a href="#" data-id={row.TargetListing__c} onclick={handleMobileNavigate} tabindex="-1">
+                                            {row.ListingName}
+                                        </a>
+                                    </div>
+                                </td>
+                                <td data-label="備考・要望">
+                                    <div class="slds-truncate" title={row.Remarks__c}>{row.Remarks__c}</div>
+                                </td>
+                                <td data-label="ステータス">
+                                    <div class="slds-truncate" title={row.Status__c}>{row.Status__c}</div>
+                                </td>
+                                <td data-label="アクション">
+                                    <lightning-button-icon 
+                                        icon-name="utility:close" 
+                                        variant="bare" 
+                                        size="medium" 
+                                        data-id={row.Id}
+                                        onclick={handleMobileCancel}
+                                        alternative-text="キャンセル">
+                                    </lightning-button-icon>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
             </div>
 
             <!-- モバイル用カードリスト -->
             <div class="mobile-only">
                 <template for:each={tableData} for:item="row">
-                    <div key={row.Id} class="slds-box slds-box_small slds-m-bottom_medium slds-theme_default">
+                    <div key={row.Id} class="slds-box slds-box_small slds-m-bottom_medium">
                         <div class="slds-grid slds-grid_align-spread slds-m-bottom_small">
                             <div class="slds-grid slds-grid_vertical-align-center">
                                 <p class="slds-text-heading_small slds-truncate slds-m-right_small">
